@@ -1,0 +1,1 @@
+{"name":"locify-local-demand-prototype","version":"1.0.0","private":true,"description":"A deployable static prototype for Locify.","scripts":{"start":"npx serve .","dev":"npx serve .","preview":"npx serve ."}}

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f1e8" />
+    <meta
+      name="description"
+      content="Locify connects urgent local demand with nearby shops that already have the item."
+    />
+    <title>Locify | Ask nearby. Pick up today.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#request" aria-label="Locify home">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <span class="brand-word">locify</span>
+        </a>
+        <div class="location-control">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>Indiranagar, Bengaluru</span>
+          <button class="icon-button" type="button" title="Change location" aria-label="Change location">
+            <i data-lucide="chevron-down"></i>
+          </button>
+        </div>
+        <nav class="top-actions" aria-label="Primary">
+          <button class="text-button" data-scroll-to="how-it-works" type="button">How it works</button>
+          <button class="text-button" data-open-modal="vendor" type="button">I’m a vendor</button>
+          <button class="profile-button" data-open-modal="profile" type="button" aria-label="Open profile">
+            <i data-lucide="user-round"></i>
+          </button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" id="request">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> Local demand, answered</p>
+            <h1>Ask nearby.<br /><em>Pick up today.</em></h1>
+            <p class="hero-description">
+              Tell Locify what you need. Nearby shops reply with what they have, the price, and how fast you can get it.
+            </p>
+            <div class="trust-row">
+              <div class="avatar-stack" aria-label="People using Locify">
+                <span class="avatar avatar-one">R</span>
+                <span class="avatar avatar-two">A</span>
+                <span class="avatar avatar-three">K</span>
+                <span class="avatar avatar-four">+</span>
+              </div>
+              <span>Built for the Bengaluru neighbourhood</span>
+            </div>
+          </div>
+          <div class="request-card" aria-labelledby="request-title">
+            <div class="card-heading">
+              <div>
+                <p class="card-kicker">Start a request</p>
+                <h2 id="request-title">What are you looking for?</h2>
+              </div>
+              <span class="step-label">01 <span>/ 02</span></span>
+            </div>
+            <form id="request-form">
+              <label class="field-label" for="item-input">Item or keyword</label>
+              <div class="input-with-icon">
+                <i data-lucide="search"></i>
+                <input id="item-input" name="item" type="text" placeholder="e.g. USB-C hub, art paper, cycle pump" autocomplete="off" required />
+              </div>
+              <div class="form-grid">
+                <div>
+                  <label class="field-label" for="category-input">Category</label>
+                  <div class="select-wrap">
+                    <select id="category-input" name="category">
+                      <option value="Everything">Everything</option>
+                      <option>Electronics</option>
+                      <option>Stationery</option>
+                      <option>Home & repair</option>
+                      <option>Sports & outdoors</option>
+                    </select>
+                    <i data-lucide="chevron-down"></i>
+                  </div>
+                </div>
+                <div>
+                  <label class="field-label" for="radius-input">Search radius</label>
+                  <div class="select-wrap">
+                    <select id="radius-input" name="radius">
+                      <option value="3">Within 3 km</option>
+                      <option value="5">Within 5 km</option>
+                      <option value="10">Within 10 km</option>
+                    </select>
+                    <i data-lucide="chevron-down"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="request-options">
+                <label class="toggle-row">
+                  <input id="urgent-input" type="checkbox" checked />
+                  <span class="toggle" aria-hidden="true"></span>
+                  <span>
+                    <strong>I need it today</strong>
+                    <small>Prioritise shops that can confirm quickly</small>
+                  </span>
+                </label>
+                <label class="photo-upload">
+                  <input id="photo-input" type="file" accept="image/*" />
+                  <i data-lucide="image-plus"></i>
+                  <span>Add a photo <small>optional</small></span>
+                </label>
+              </div>
+              <button class="primary-button" type="submit">
+                <span>Find it near me</span>
+                <i data-lucide="arrow-up-right"></i>
+              </button>
+              <p class="form-footnote"><i data-lucide="shield-check"></i> No account needed to ask</p>
+            </form>
+          </div>
+        </section>
+
+        <section class="results-section" id="matches" aria-live="polite">
+          <div class="section-intro">
+            <div>
+              <p class="eyebrow"><span class="eyebrow-line"></span> Live around you</p>
+              <h2 id="results-heading">Recent requests in Indiranagar</h2>
+            </div>
+            <div class="view-controls">
+              <span class="result-count" id="result-count">3 active</span>
+              <div class="segmented-control" role="group" aria-label="View style">
+                <button class="segment-button active" data-view="list" type="button" aria-label="List view"><i data-lucide="list"></i></button>
+                <button class="segment-button" data-view="map" type="button" aria-label="Map view"><i data-lucide="map"></i></button>
+              </div>
+            </div>
+          </div>
+          <p class="sample-note">Sample requests and shop offers shown for prototype demonstration.</p>
+          <div id="results-list" class="results-list"></div>
+          <div id="map-view" class="map-view" hidden>
+            <div class="map-toolbar">
+              <span><i data-lucide="navigation"></i> Live request map</span>
+              <button class="map-locate" type="button"><i data-lucide="locate-fixed"></i> Recenter</button>
+            </div>
+            <div class="map-canvas" aria-label="Illustrated map of nearby requests">
+              <div class="map-road road-one"></div>
+              <div class="map-road road-two"></div>
+              <div class="map-road road-three"></div>
+              <div class="map-block block-one"></div>
+              <div class="map-block block-two"></div>
+              <div class="map-block block-three"></div>
+              <div class="map-block block-four"></div>
+              <span class="map-label label-one">12th Main</span>
+              <span class="map-label label-two">100 Feet Rd</span>
+              <button class="map-pin pin-you" type="button" aria-label="Your location"><span class="you-pulse"></span><i data-lucide="navigation"></i></button>
+              <button class="map-pin pin-one" data-map-request="0" type="button" aria-label="View USB-C hub request"><span>1</span></button>
+              <button class="map-pin pin-two" data-map-request="1" type="button" aria-label="View fountain pen request"><span>2</span></button>
+              <button class="map-pin pin-three" data-map-request="2" type="button" aria-label="View cycle pump request"><span>3</span></button>
+              <div class="map-location-label"><strong>You</strong><span>Indiranagar</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="how-section" id="how-it-works">
+          <div class="how-header">
+            <p class="eyebrow"><span class="eyebrow-line"></span> The Locify loop</p>
+            <h2>One question.<br /><span>Several local answers.</span></h2>
+            <p>Local shops do not need to build a catalogue. They only answer the demand that is already here.</p>
+          </div>
+          <div class="steps">
+            <article class="step">
+              <div class="step-number">01</div>
+              <i data-lucide="message-square-plus"></i>
+              <h3>Ask once</h3>
+              <p>Describe the item and where you are. Add a photo when the details matter.</p>
+            </article>
+            <div class="step-connector" aria-hidden="true"><i data-lucide="arrow-right"></i></div>
+            <article class="step">
+              <div class="step-number">02</div>
+              <i data-lucide="store"></i>
+              <h3>Shops reply</h3>
+              <p>Nearby vendors see the request and reply with stock, price, and pickup timing.</p>
+            </article>
+            <div class="step-connector" aria-hidden="true"><i data-lucide="arrow-right"></i></div>
+            <article class="step">
+              <div class="step-number">03</div>
+              <i data-lucide="hand-coins"></i>
+              <h3>Choose local</h3>
+              <p>Compare the offers, reserve the best fit, and get it today without the delivery wait.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="vendor-banner">
+          <div class="vendor-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> For local shops</p>
+            <h2>Turn “do you have this?” into your next customer.</h2>
+            <p>Answer requests in seconds. Keep your shelves and your independence.</p>
+          </div>
+          <button class="outline-button" data-open-modal="vendor" type="button">See the vendor view <i data-lucide="arrow-up-right"></i></button>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-brand">
+          <span class="brand-mark small" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="brand-word">locify</span>
+        </div>
+        <p>Built for the shops and streets around us.</p>
+        <div class="footer-links"><a href="#how-it-works">How it works</a><a href="#request">Start a request</a><button data-open-modal="vendor" type="button">For vendors</button></div>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <i data-lucide="check-circle-2"></i>
+      <span id="toast-message">Request posted</span>
+    </div>
+
+    <dialog class="modal" id="vendor-modal">
+      <button class="modal-close" data-close-modal type="button" aria-label="Close vendor dialog"><i data-lucide="x"></i></button>
+      <div class="modal-icon"><i data-lucide="store"></i></div>
+      <p class="card-kicker">Vendor preview</p>
+      <h2>Reply to demand, not a catalogue.</h2>
+      <p class="modal-copy">Locify keeps the work light. See nearby requests, answer the ones you can fulfil, and let buyers choose how to get it.</p>
+      <div class="vendor-request-preview">
+        <div><span class="request-status">NEW · 4 min ago</span><strong>USB-C hub with HDMI</strong><small>0.8 km away · needed today</small></div>
+        <button class="reply-button" type="button" data-vendor-action>Reply</button>
+      </div>
+      <div class="vendor-request-preview muted">
+        <div><span class="request-status">OPEN · 18 min ago</span><strong>A4 tracing paper, 90gsm</strong><small>1.1 km away · 5 sheets</small></div>
+        <button class="reply-button" type="button" data-vendor-action>Reply</button>
+      </div>
+      <button class="primary-button full" data-close-modal type="button">Back to requests</button>
+    </dialog>
+
+    <dialog class="modal profile-modal" id="profile-modal">
+      <button class="modal-close" data-close-modal type="button" aria-label="Close profile dialog"><i data-lucide="x"></i></button>
+      <div class="profile-top"><div class="profile-avatar">RK</div><div><p class="card-kicker">Your Locify profile</p><h2>Riya K</h2></div></div>
+      <div class="profile-stat"><span>Requests this month</span><strong>4</strong></div>
+      <div class="profile-stat"><span>Time saved</span><strong>2h 35m</strong></div>
+      <button class="outline-button full" data-close-modal type="button">Continue browsing</button>
+    </dialog>
+
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
