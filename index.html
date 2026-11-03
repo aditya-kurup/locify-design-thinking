@@ -35,7 +35,7 @@
         </div>
         <nav class="top-actions" aria-label="Primary">
           <button class="text-button" data-scroll-to="how-it-works" type="button">How it works</button>
-          <button class="text-button" data-open-modal="vendor" type="button">I’m a vendor</button>
+          <button class="text-button mode-switch" data-mode="vendor" type="button">Vendor inbox <span class="inbox-count" id="inbox-count">0</span></button>
           <button class="profile-button" data-open-modal="profile" type="button" aria-label="Open profile">
             <i data-lucide="user-round"></i>
           </button>
@@ -43,6 +43,7 @@
       </header>
 
       <main>
+        <div id="buyer-view">
         <section class="hero" id="request">
           <div class="hero-copy">
             <p class="eyebrow"><span class="eyebrow-line"></span> Local demand, answered</p>
@@ -156,9 +157,9 @@
               <span class="map-label label-one">12th Main</span>
               <span class="map-label label-two">100 Feet Rd</span>
               <button class="map-pin pin-you" type="button" aria-label="Your location"><span class="you-pulse"></span><i data-lucide="navigation"></i></button>
-              <button class="map-pin pin-one" data-map-request="0" type="button" aria-label="View USB-C hub request"><span>1</span></button>
-              <button class="map-pin pin-two" data-map-request="1" type="button" aria-label="View fountain pen request"><span>2</span></button>
-              <button class="map-pin pin-three" data-map-request="2" type="button" aria-label="View cycle pump request"><span>3</span></button>
+              <button class="map-pin pin-one" data-map-request="seed-hub" type="button" aria-label="View USB-C hub request"><span>1</span></button>
+              <button class="map-pin pin-two" data-map-request="seed-pen" type="button" aria-label="View fountain pen request"><span>2</span></button>
+              <button class="map-pin pin-three" data-map-request="seed-pump" type="button" aria-label="View cycle pump request"><span>3</span></button>
               <div class="map-location-label"><strong>You</strong><span>Indiranagar</span></div>
             </div>
           </div>
@@ -200,7 +201,28 @@
             <h2>Turn “do you have this?” into your next customer.</h2>
             <p>Answer requests in seconds. Keep your shelves and your independence.</p>
           </div>
-          <button class="outline-button" data-open-modal="vendor" type="button">See the vendor view <i data-lucide="arrow-up-right"></i></button>
+          <button class="outline-button" data-mode="vendor" type="button">Open vendor inbox <i data-lucide="arrow-up-right"></i></button>
+        </section>
+        </div>
+
+        <section class="vendor-workspace" id="vendor-view" hidden>
+          <div class="vendor-workspace-header">
+            <div>
+              <p class="eyebrow"><span class="eyebrow-line"></span> Vendor workspace</p>
+              <h1>Requests from <em>nearby.</em></h1>
+              <p>Reply to requests you can fulfil. Your offer appears in the buyer’s comparison list right away.</p>
+            </div>
+            <div class="vendor-profile-field">
+              <label class="field-label" for="vendor-name">Shop name</label>
+              <input id="vendor-name" type="text" value="Byte & Bolt" maxlength="48" />
+              <small>Displayed with your offers</small>
+            </div>
+          </div>
+          <div class="vendor-list-header">
+            <div><strong>Nearby requests</strong><span id="vendor-request-count">0 open</span></div>
+            <button class="text-button reset-demo" id="reset-demo" type="button"><i data-lucide="rotate-ccw"></i> Reset demo</button>
+          </div>
+          <div class="vendor-request-list" id="vendor-request-list"></div>
         </section>
       </main>
 
@@ -210,7 +232,7 @@
           <span class="brand-word">locify</span>
         </div>
         <p>Built for the shops and streets around us.</p>
-        <div class="footer-links"><a href="#how-it-works">How it works</a><a href="#request">Start a request</a><button data-open-modal="vendor" type="button">For vendors</button></div>
+        <div class="footer-links"><a href="#how-it-works">How it works</a><a href="#request">Start a request</a><button data-mode="vendor" type="button">For vendors</button></div>
       </footer>
     </div>
 
@@ -242,6 +264,15 @@
       <div class="profile-stat"><span>Requests this month</span><strong>4</strong></div>
       <div class="profile-stat"><span>Time saved</span><strong>2h 35m</strong></div>
       <button class="outline-button full" data-close-modal type="button">Continue browsing</button>
+    </dialog>
+
+    <dialog class="modal offers-modal" id="offers-modal">
+      <button class="modal-close" data-close-modal type="button" aria-label="Close offers dialog"><i data-lucide="x"></i></button>
+      <p class="card-kicker">Nearby replies</p>
+      <h2 id="offers-title">Offers for your request</h2>
+      <p class="modal-copy" id="offers-subtitle"></p>
+      <div id="offers-list" class="offers-list"></div>
+      <button class="outline-dark-button full" data-close-modal type="button">Back to requests</button>
     </dialog>
 
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>

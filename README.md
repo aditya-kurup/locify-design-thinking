@@ -1,68 +1,46 @@
 # Locify
 
-Locify is a design thinking prototype for the question: **“Who nearby has this item right now?”** A customer posts a request once; nearby independent shops can reply with availability, price, and readiness, so the customer can compare local options.
+Locify is a demo-ready design thinking prototype for the question “Who nearby has this item right now?” Buyers post a request once; nearby shops can reply with availability, price, and timing so the buyer can choose a local option.
 
-## Project context
+## Run the demo
 
-This prototype is based on the supplied Locify design thinking presentation and its Phase 1 findings. It frames two user groups: students and young professionals who need a specific or urgent item, and neighbourhood retailers who may have useful stock but do not maintain item-level online catalogues. The root cause in the deck is the lack of a low-effort channel connecting current customer demand to current local stock.
-
-The initial persona is Riya, a 21-year-old engineering student. Her journey moves from an urgent need to online search, calls or visits to shops, comparison, and purchase. The design prompt is to help customers find nearby stock without requiring vendors to catalogue everything, while making replies quick and trustworthy.
-
-The presentation also contains preliminary patent, publication, and product scans. Those summaries are included in the report as supplied context; they have not been independently verified and are not legal advice or a novelty assessment.
-
-## Run locally
-
-Requirements: Node.js and npm.
-
-
-default
-
-
-default
-
-
-default
-
-
-default
-
-
-default
+Requirements: Node.js 18 or newer. No package installation is needed.
 
 ```sh
 npm run dev
 ```
 
-Open the local URL printed by the server. The project is a static site: no bundler or build step is required.
+Open the URL printed in the terminal (usually `http://localhost:3000`). The same command works with `npm start`.
+
+## Demo flow
+
+1. In Buyer view, post an item request. The three sample requests are also available for a quick start.
+2. Select Vendor inbox in the header.
+3. Set the shop name, enter a price, choose readiness and pickup or local delivery, then send an offer.
+4. Return to Buyer view, open View replies, and choose the shop.
+5. In the reservation confirmation, mark the item as collected to finish the flow.
+
+Demo requests, shop identity, offers, reservations, and collection status persist in browser local storage. Select Reset demo in the vendor workspace to restore the sample requests and start again. All data stays in this browser and is not sent to a server.
+
+## Project context
+
+The supplied Locify design thinking presentation frames two users: students and young professionals seeking a specific or urgent item, and neighbourhood retailers who may have useful stock but do not maintain item-level online catalogues. Its root cause is the lack of a low-effort channel connecting current buyer demand with current local stock. The Riya journey persona, 5-Whys analysis, How Might We questions, and secondary landscape scan are documented in `Locify_Design_Thinking_Report.docx`.
+
+Patent, publication, and product summaries in the presentation and report are source-deck summaries. They have not been independently verified and are not legal advice or a novelty assessment. The report also distinguishes the prototype walkthrough from primary user research: no interviews or participant usability study have been conducted yet.
 
 ## Deploy
 
-The repository can be imported directly into Netlify or Vercel as a static site. Set the publish/output directory to the repository root; no build command is needed. It can also be served from any static web host. The Lucide icon script and Google Fonts are loaded from CDNs, so those assets require internet access unless you self-host them.
-
-## Prototype features
-
-- Request form with item, category, radius, urgency, and optional photo selection
-- Sample local request feed with illustrative shop offers
-- Client-side request posting for the current page session
-- Switch between list and illustrative map views
-- Vendor preview with an interactive reply state
-- Profile preview
-- Responsive desktop and mobile layouts
+The site is static and can be deployed by publishing the repository root to Netlify, Vercel, GitHub Pages, or another static host. No build command is needed. Google Fonts and Lucide icons load from CDNs and therefore need internet access unless self-hosted.
 
 ## Architecture
 
-- `index.html`: page structure and dialog content
+- `index.html`: buyer and vendor workspaces, request form, and offer dialog
 - `styles.css`: responsive styles and illustrative map
-- `app.js`: local sample data and browser interactions
+- `app.js`: request, offer, reservation, completion, and local persistence logic
+- `server.mjs`: dependency-free local static server
 - `public/`: institute identity assets extracted from the supplied deck
 - `Locify_Design_Thinking_Report.docx`: completed project report
 
-## Data and limitations
+## Demo limitations
 
-All shops, prices, distances, offers, profile metrics, and example users are illustrative. Posted requests live only in browser memory and reset on reload. The map is a visual mock and does not use GPS or map data. The prototype does not persist requests, notify real vendors, reserve items, authenticate users, process payments, or store uploaded photos.
-
-Before a live pilot, add a backend and database, opt-in location, vendor notification and response management, moderation and abuse controls, offer expiry, privacy practices, and clear reservation/cancellation rules. Field-test the assumptions with the deck’s proposed 8–10 customers and 5–6 vendors.
-
-## Report
-
-The completed report follows the course template’s chapter structure and covers empathy, the persona journey, problem definition, 5-Whys, How Might We questions, the design concept, prototype, browser checks, limitations, future work, and the landscape notes from the presentation. It clearly distinguishes deck-derived context and prototype checks from real user research: no interviews or participant usability study have been conducted yet.
+This is a single-browser demo. Buyer and vendor views share local storage to demonstrate the end-to-end flow. Separate people or devices do not share data. There is no account system, API, database, real vendor notification, GPS, geographic map, payment, or inventory integration. Offers, sample shops, distances, and profile metrics are illustrative. A live pilot needs a backend, opt-in location, notifications, moderation, privacy practices, and verified offer and reservation rules.
